@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 namespace Fengweizhe
 {
@@ -10,8 +8,8 @@ namespace Fengweizhe
         {
             Console.WriteLine("请输入要排序的数字组, 用逗号隔开:");
             String line = Console.ReadLine();
-            List<int> list = new List<int>();
             String[] arr = line.Split(",");
+            List<int> list = new List<int>();
             for (int i = 0; i < arr.Length; i++)
             {
                 if (arr[i].Trim() == "") continue;
