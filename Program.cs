@@ -7,19 +7,36 @@ namespace gc_demo_day1
         public static void Main()
         {
             Console.WriteLine("请输入要排序的数字组, 用逗号隔开:");
-            var line = Console.ReadLine();
-            var arr = line?.Split(",");
-            List<int> list = new();
-            for (var i = 0; i < arr?.Length; i++)
-            {
-                if (arr[i].Trim() == "")
-                {
-                    continue;
-                }
+            List<int> list = GetListFromConsoleInput();
+            QuickSort(list, 0, list.Count - 1);
+            Console.WriteLine("快速排序后的结果如下:");
+            Console.WriteLine(string.Join(',', list));
+        }
 
+
+        private static List<int> GetListFromConsoleInput()
+        {
+            string inputStr = "";
+            do
+            {
+                var line = Console.ReadLine();
+                if (null != line)
+                {
+                    inputStr = line;
+                }
+                else
+                {
+                    Console.WriteLine("请重新输入");
+                }
+            } while (inputStr == "");
+
+            var arr = inputStr.Split(",");
+            List<int> list = new();
+            foreach (var item in arr)
+            {
                 try
                 {
-                    list.Add(int.Parse(arr[i]));
+                    list.Add(int.Parse(item));
                 }
                 catch (Exception e)
                 {
@@ -27,28 +44,16 @@ namespace gc_demo_day1
                 }
             }
 
-            QuickSort(list, 0, list.Count - 1);
-            Console.WriteLine("快速排序后的结果如下:");
-            StringBuilder sb = new();
-            foreach (int i in list)
-            {
-                if (sb.Length != 0)
-                {
-                    sb.Append(',');
-                }
-
-                sb.Append(i);
-            }
-
-            Console.WriteLine(sb.ToString());
+            return list;
         }
 
         private static void QuickSort(List<int> list, int min, int max)
         {
-            if (list.Count == 0) 
+            if (list.Count == 0)
             {
                 return;
             }
+
             int key = list[min]; // 取第一个值作为基准值
             int start = min; // 从左向右遍历的指针
             int end = max; // 从右向左遍历的指针 
