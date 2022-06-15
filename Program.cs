@@ -45,7 +45,10 @@ namespace gc_demo_day1
 
         private static void QuickSort(List<int> list, int min, int max)
         {
-            if (list.Count == 0) return;
+            if (list.Count == 0) 
+            {
+                return;
+            }
             int key = list[min]; // 取第一个值作为基准值
             int start = min; // 从左向右遍历的指针
             int end = max; // 从右向左遍历的指针 
