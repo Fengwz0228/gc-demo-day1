@@ -7,14 +7,14 @@ namespace gc_demo_day1
         public static void Main()
         {
             Console.WriteLine("请输入要排序的数字组, 用逗号隔开:");
-            List<int> list = GetListFromConsoleInput();
+            string inputStr = GetInputStrFromConsole();
+            List<int> list = GetListByInputStr(inputStr);
             QuickSort(list, 0, list.Count - 1);
             Console.WriteLine("快速排序后的结果如下:");
             Console.WriteLine(string.Join(',', list));
         }
 
-
-        private static List<int> GetListFromConsoleInput()
+        private static string GetInputStrFromConsole()
         {
             string inputStr = "";
             do
@@ -30,6 +30,11 @@ namespace gc_demo_day1
                 }
             } while (inputStr == "");
 
+            return inputStr;
+        }
+
+        private static List<int> GetListByInputStr(string inputStr)
+        {
             var arr = inputStr.Split(",");
             List<int> list = new();
             foreach (var item in arr)
